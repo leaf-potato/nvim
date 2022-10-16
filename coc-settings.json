@@ -1,3 +1,4 @@
 {
-    "clangd.compilationDatabasePath": "build/"
+    "clangd.compilationDatabasePath": "build/",
+    "Lua.telemetry.enable": false
 }
