@@ -11,5 +11,11 @@ toggleterm.setup({
         end
     end,
     -- 插入模式下启动
-    start_in_insert = true
+    start_in_insert = true,
+    direction = "float",
+    float_opts = {
+        height = 30,
+        width = 130,
+        border = "double"
+    }
 })
