@@ -1,4 +1,8 @@
 {
-    "clangd.compilationDatabasePath": "build/",
-    "Lua.telemetry.enable": false
+    "clangd.compilationDatabasePath": "build",
+    "Lua.telemetry.enable": false,
+    "inlayHint.enable": false,
+    "list.height": 30,
+    "list.maxPreviewHeight": 30,
+    "list.previewToplineOffset": 40
 }
