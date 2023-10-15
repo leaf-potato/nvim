@@ -85,7 +85,7 @@ nnoremap <Leader>jw <C-W>j
 nmap <Leader>M %
 
 " 让配置变更立即生效
-autocmd BufWritePost $MYVIMRC source $MYVIMRC
+" autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
 " ============= vim-plug插件配置信息 ====================
 "
@@ -125,6 +125,7 @@ let g:coc_global_extensions = [
     \ 'coc-lists',
     \ 'coc-vimlsp',
     \ 'coc-clangd',
+    \ 'coc-snippets',
     \ 'coc-webview',
     \ 'coc-sumneko-lua']
 
@@ -133,7 +134,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 
 let g:gruvbox_material_background = 'soft'
+let g:gruvbox_material_foreground = 'original'
 colorscheme gruvbox-material 
+" colorscheme darkblue
 
 " 加载lua配置
 :lua require("lua.lua")
@@ -167,4 +170,35 @@ nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep
 
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>let g:coc_snippet_next = '<tab>'
+" =============================== coc-snippets ============================
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
