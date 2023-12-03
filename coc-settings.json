@@ -3,12 +3,10 @@
     "Lua.telemetry.enable": false,
     "inlayHint.enable": false,
     
-    // ========================coc-list===================== //
     "list.height": 30,
     "list.maxPreviewHeight": 30,
     "list.previewToplineOffset": 40,
     
-    // ========================coc-snippets===================== //
     "snippets.ultisnips.directories": [ // 指定snippets目录
         "ultisnips"
     ]
